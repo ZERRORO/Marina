@@ -1,0 +1,115 @@
+﻿@page "/"
+@using MudBlazor
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudContainer>
+    <MudGrid>
+        <!-- Товар -->
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard Outlined=true>
+                <MudCardHeader>
+                    <MudText Typo="Typo.h5">Товары</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText>От простых до элитных. Честные цены.</MudText>
+                    <MudText>Опытный персонал.</MudText>
+
+                    <MudDivider Class="my-6" />
+
+                    <MudCardContent Style="display:flex; flex-wrap:wrap; align-items:center;">
+                        <MudIcon Class="mr-1" Color="@Color.Success" Icon="@Icons.Material.Filled.Check" />
+                        <MudText>Гроб</MudText>
+                    </MudCardContent>
+                    <MudCardContent Style="display:flex; flex-wrap:wrap; align-items:center;">
+                        <MudIcon Class="mr-1" Color="@Color.Success" Icon="@Icons.Material.Filled.Check" />
+                        <MudText>Крест</MudText>
+                    </MudCardContent>
+                    <MudCardContent Style="display:flex; flex-wrap:wrap; align-items:center;">
+                        <MudIcon Class="mr-1" Color="@Color.Success" Icon="@Icons.Material.Filled.Check" />
+                        <MudText>Венок</MudText>
+                    </MudCardContent>
+                    <MudCardContent Style="display:flex; flex-wrap:wrap; align-items:center;">
+                        <MudIcon Class="mr-1" Color="@Color.Success" Icon="@Icons.Material.Filled.Check" />
+                        <MudText>Одежда</MudText>
+                    </MudCardContent>
+                    <MudCardContent Style="display:flex; flex-wrap:wrap; align-items:center;">
+                        <MudIcon Class="mr-1" Color="@Color.Success" Icon="@Icons.Material.Filled.Check" />
+                        <MudText>Ритуальные принадлежности</MudText>
+                    </MudCardContent>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <!-- Перевозки -->
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard Outlined=true>
+                <MudCardHeader>
+                    <MudText Typo="Typo.h5">Перевозки</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText>По Труновскому району.</MudText>
+
+                    <MudDivider Class="my-6" />
+
+                    <MudCardContent Style="display:flex; flex-wrap:wrap; align-items:center;">
+                        <MudIcon Class="mr-1" Color="@Color.Success" Icon="@Icons.Material.Filled.Check" />
+                        <MudText>Катафалк</MudText>
+                    </MudCardContent>
+                    <MudCardContent Style="display:flex; flex-wrap:wrap; align-items:center;">
+                        <MudIcon Class="mr-1" Color="@Color.Success" Icon="@Icons.Material.Filled.Check" />
+                        <MudText>Автобус</MudText>
+                    </MudCardContent>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <!-- Режим работы -->
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard Outlined=true>
+                <MudCardHeader>
+                    <MudText Typo="Typo.h5">Режим работы</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudDivider Class="my-6" />
+
+                    <MudCardContent Style="display:flex; flex-wrap:wrap; align-items:center;">
+                        <MudIcon Class="mr-1" Color="@Color.Success" Icon="@Icons.Material.Filled.Check" />
+                        <MudText>Работаем круглосуточно</MudText>
+                    </MudCardContent>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+<MudText Class="mt-8 md-4" Style="padding-left: 15%;" Typo="@Typo.h4">Контакты</MudText>
+
+<MudStack Row Justify="Justify.Center">
+    <MudPaper Class="pa-8 ma-2" Outlined=true>
+        <MudCardHeader>
+        <MudText Typo="@Typo.h5">Реквизиты</MudText>
+        </MudCardHeader>
+        <MudText>ИП Юрова Марина Владимимировна</MudText>
+        <MudText>Находящаяся по адресу: Ставропольский край, Труновский район, с. Донское, ул. Кооперативная, д.26.</MudText>
+        <MudText>ОГРНИП: 312265101100431</MudText>
+        <MudText>ИНН: 260503942273</MudText>
+    </MudPaper>
+    <MudPaper Class="pa-8 ma-2" Outlined=true>
+        <MudCardHeader>
+        <MudText Class="md-2" Typo="@Typo.h5">Телефон</MudText>
+        </MudCardHeader>
+        <MudStack Row AlignItems="AlignItems.Center">
+            <MudIconButton Class="mr-1" Variant="@Variant.Text" Color="@Color.Success" Icon="@Icons.Custom.Brands.WhatsApp" Href="https://wa.me/79633828839" />
+            <MudText Class="cursor-pointer" @onclick="CopyToClipboard">8 963-382-88-39</MudText>
+        </MudStack>
+    </MudPaper>
+</MudStack>
+
+@code {
+    private async Task CopyToClipboard()
+    {
+        await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", "+79633828839");
+        Snackbar.Add("Номер скопирован!", Severity.Success);
+    }
+}
